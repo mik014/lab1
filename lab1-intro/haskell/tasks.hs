@@ -9,17 +9,20 @@ sayHello =
   putStrLn name
 -}
 
-ask :: String -> IO ()
-ask prompt =
+ask :: String -> Int -> IO ()
+ask prompt count =
   do
-  putStrLn prompt
+  putStrLn (prompt ++ replicate count '!')
   line <- getLine
-  if line == ""
-    then ask prompt
-    else putStrLn ("you said: " ++ reverse line)
+  if line == "quit"
+    then putStrLn("quitting...")
+  else if line == ""
+    then ask prompt (count + 1)
+  else putStrLn ("you said: " ++ reverse line)
+    
 
 main :: IO ()
 main =
   do
   --sayHello
-  ask "please say something"
+  ask "please say something" 0
