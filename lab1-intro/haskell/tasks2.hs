@@ -14,7 +14,8 @@ main = do
     input <- getLine 
     let x = (read input :: Int)
     putStrLn( show (sgn (x)) )
-sgn :: (Ord a, Num a) => a -> Int
-sgn x | x < 0  = -1
-      | x == 0 = 0
-      | otherwise = 1
+opr :: String -> IO ()
+opr x | opr == "add" = putStrLn "Addition"
+      | opr == "subtract" = putStrLn "Subtraction"
+      | opr == "multiply" = putStrLn "Multiplication"
+      | otherwise = putStrLn "Unrecognised Operation"
